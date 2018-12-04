@@ -1,0 +1,33 @@
+[
+    {
+      "name": "Drew",
+      "yob": 1994,
+      "male": true
+    },
+    {
+      "name": "Ingrid",
+      "yob": 1992,
+      "male": false
+    },
+    {
+      "name": "Cleo",
+      "yob": 2003,
+      "male": false
+
+    },
+    {
+      "name": "Niko",
+      "yob": 2005,
+      "male": true
+    },
+    {
+      "name": "Wally",
+      "yob": 1960,
+      "male": true
+    },
+    {
+      "name": "Turid",
+      "yob": 1960,
+      "male": false
+    }
+]
