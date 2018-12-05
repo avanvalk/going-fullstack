@@ -1,11 +1,17 @@
 const express = require('express');
 const app = express();
+const shortid = require('shortid');
 
 const fs = require('fs');
 
 function readData() {
   const data = fs.readFileSync('./data/students.json', 'utf8');
   return JSON.parse(data);
+}
+
+function saveData(students) {
+  const json = JSON.stringify(students, true, 2);
+  fs.writeFileSync('./data/students.json', json);
 }
 
 app.use(express.json());
@@ -29,9 +35,9 @@ app.post('/api/data/students', (req, res) => {
 
   const students = readData();
   const student = req.body;
-//  student.id = shortid.generate();
+  student.id = shortid.generate();
   students.push(student);
-//  saveData(students);
+  saveData(students);
 
   res.json(student);
 });
