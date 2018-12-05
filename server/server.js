@@ -10,7 +10,7 @@ function readData() {
 
 app.use(express.json());
 
-app.get('/api/students'), (req, res) => {
+app.get('/api/data/students', (req, res) => {
   const students = readData();
 
   if(req.query.name) {
@@ -23,9 +23,9 @@ app.get('/api/students'), (req, res) => {
   else {
     res.json(students);
   }
-};
+});
 
-app.post('/api/students', (req, res) => {
+app.post('/api/data/students', (req, res) => {
 
   const students = readData();
   const student = req.body;
