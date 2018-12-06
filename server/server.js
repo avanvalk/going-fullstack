@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
@@ -37,9 +38,9 @@ app.post('/api/students', (req, res) => {
   const body = req.body;
 
   client.query(`
-    INSERT INTO students (name, description, track, start_date)
+    INSERT INTO students (id, name, male)
     VALUES($1, $2, $3, $4)
-    RETURNING id, name, description, track, start_date as "startDate";
+    RETURNING id, name, male;
   `,
   [body.name, body.description, body.track, body.startDate])
     .then(result => {

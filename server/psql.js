@@ -1,7 +1,7 @@
 const fs = require('fs');
 const pg = require('pg');
 const Client = pg.Client;
-const databaseUrl = 'postgres://localhost:5432/school';
+const databaseUrl = 'postgres://postgres:drewby864@localhost:5432/school';
 
 const client = new Client(databaseUrl);
 
