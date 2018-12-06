@@ -1,45 +1,80 @@
 const express = require('express');
 const app = express();
-const shortid = require('shortid');
+const morgan = require('morgan');
+const client = require('./db-client');
 
-const fs = require('fs');
-
-function readData() {
-  const data = fs.readFileSync('./data/students.json', 'utf8');
-  return JSON.parse(data);
-}
-
-function saveData(students) {
-  const json = JSON.stringify(students, true, 2);
-  fs.writeFileSync('./data/students.json', json);
-}
+app.use(morgan('dev'));
 
 app.use(express.json());
 
-app.get('/api/data/students', (req, res) => {
-  const students = readData();
-
-  if(req.query.name) {
-    const match = req.query.name.toLowerCase();
-    const filtered = students.filter(s => {
-      return s.name.toLowerCase().startsWith(match);
+app.get('/api/tracks', (req, res) => {
+  client.query(`
+  SELECT id, name, yob)
+  FROM track
+  ORDER BY name;
+  `)
+    .then(result => {
+      res.json(result.rows);
     });
-    res.json(filtered);
-  }
-  else {
-    res.json(students);
-  }
 });
 
-app.post('/api/data/students', (req, res) => {
+app.get('/api/data/students', (req, res) => {
+  client.query(`
+    SELECT
+      student.id
+      student.name as name,
+      start_date as "startDate",
+      track.id as "trackId",
+      track.name as track
+    From student
+    JOIN track
+    ON student.track_id = track.id
+    ORDER by start_date DESC, name ASC;
+  `)
+    .then(result => {
+      res.json(result.rows);
+    });
+});
 
-  const students = readData();
-  const student = req.body;
-  student.id = shortid.generate();
-  students.push(student);
-  saveData(students);
+app.get('/api/students/:id', (req, res) => {
+  client.query(`
+    SELECT * FROM student WHERE id = $1;
+  `,
+  [req.params.id])
+    .then(result => {
+      res.json(result.rows[0]);
+    });
+});
 
-  res.json(student);
+app.post('/api/students/:id', (req, res) => {
+  const body = req.body;
+
+  client.query(`
+    INSERT INTO student (name, track_id, start_date)
+    VALUES($1, $2, $3)
+    RETURNING id;
+  `,
+  [body.name, body.trackId, body.startDate])
+    .then(result => {
+      const id = result.rows[0].id;
+
+      return client.query(`
+      SELECT
+        student.id,
+        student.name as name,
+        start_date as "startDate",
+        track.id as "trackId",
+        track.name as track
+      FROM student
+      JOIN track
+      ON student.track_id = track.id
+      WHERE student.id = $1;
+    `,
+      [id]);
+    })
+    .then(result => {
+      res.json(result.rows[0]);
+    });
 });
 
 const PORT = 3000;
