@@ -1,5 +1,7 @@
 const client = require('../db-client');
 
+//change the client query information
+
 client.query(`
     CREATE TABLE IF NOT EXISTS track (
         id SERIAL PRIMARY KEY,
