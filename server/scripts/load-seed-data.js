@@ -11,10 +11,10 @@ client.connect()
     return Promise.all(
       students.map(student => {
         return client.query(`
-          INSERT INTO students (name, description, track, start_date)
-          VALUES ($1, $2, $3, $4);
+          INSERT INTO students (name, yob, male)
+          VALUES ($1, $2, $3);
         `,
-        [student.name, student.description, student.track, student.start_date]);
+        [student.name, student.yob, student.male]);
       })
     );
   })

@@ -9,7 +9,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 const Client = pg.Client;
-const dbUrl = 'postgres://localhost:5432/school';
+const dbUrl = 'postgres://postgres:drewby864@localhost:5432/school';
 const client = new Client(dbUrl);
 client.connect();
 

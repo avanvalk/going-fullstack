@@ -13,9 +13,8 @@ client.connect()
       CREATE TABLE IF NOT EXISTS students (
         id SERIAL PRIMARY KEY,
         name VARCHAR(256) NOT NULL,
-        description VARCHAR(256),
-        track VARCHAR(256),
-        start_date DATE
+        yob VARCHAR(256),
+        male VARCHAR(256),
       );
     `);
   })
