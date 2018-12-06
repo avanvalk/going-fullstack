@@ -42,7 +42,7 @@ app.post('/api/students', (req, res) => {
     VALUES($1, $2, $3, $4)
     RETURNING id, name, male;
   `,
-  [body.name, body.description, body.track, body.startDate])
+  [body.id, body.name, body.male])
     .then(result => {
       res.json(result.rows[0]);
     });
