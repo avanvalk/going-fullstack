@@ -5,5 +5,10 @@
     "test:app": "cd app && npm i && npm test && cd ..",
     "test:server": "cd server && npm i && npm test && cd ..",
     "test": "npm run test:app && npm run test:server"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.7",
+    "shortid": "^2.2.14"
   }
 }

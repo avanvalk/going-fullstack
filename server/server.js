@@ -1,45 +1,50 @@
 const express = require('express');
 const app = express();
-const shortid = require('shortid');
+const morgan = require('morgan');
+const pg = require('pg');
 
-const fs = require('fs');
-
-function readData() {
-  const data = fs.readFileSync('./data/students.json', 'utf8');
-  return JSON.parse(data);
-}
-
-function saveData(students) {
-  const json = JSON.stringify(students, true, 2);
-  fs.writeFileSync('./data/students.json', json);
-}
+app.use(morgan('dev'));
 
 app.use(express.json());
 
-app.get('/api/data/students', (req, res) => {
-  const students = readData();
+const Client = pg.Client;
+const dbUrl = 'postgres://localhost:5432/school';
+const client = new Client(dbUrl);
+client.connect();
 
-  if(req.query.name) {
-    const match = req.query.name.toLowerCase();
-    const filtered = students.filter(s => {
-      return s.name.toLowerCase().startsWith(match);
+app.get('/api/students', (req, res) => {
+
+  client.query(`
+    SELECT id, name FROM students;
+  `)
+    .then(result => {
+      res.json(result.rows);
     });
-    res.json(filtered);
-  }
-  else {
-    res.json(students);
-  }
+
 });
 
-app.post('/api/data/students', (req, res) => {
+app.get('/api/students/:id', (req, res) => {
+  client.query(`
+    SELECT * FROM students WHERE id = $1;
+  `,
+  [req.params.id])
+    .then(result => {
+      res.json(result.rows[0]);
+    });
+});
 
-  const students = readData();
-  const student = req.body;
-  student.id = shortid.generate();
-  students.push(student);
-  saveData(students);
+app.post('/api/students', (req, res) => {
+  const body = req.body;
 
-  res.json(student);
+  client.query(`
+    INSERT INTO students (name, description, track, start_date)
+    VALUES($1, $2, $3, $4)
+    RETURNING id, name, description, track, start_date as "startDate";
+  `,
+  [body.name, body.description, body.track, body.startDate])
+    .then(result => {
+      res.json(result.rows[0]);
+    });
 });
 
 const PORT = 3000;
@@ -47,5 +52,3 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log('server app started on port', PORT);
 });
-
-/* end configure and server start */
