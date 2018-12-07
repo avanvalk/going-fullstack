@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.get('/api/tracks', (req, res) => {
   client.query(`
-  SELECT id, name, yob)
+  SELECT id, name)
   FROM track
   ORDER BY name;
   `)
@@ -18,10 +18,10 @@ app.get('/api/tracks', (req, res) => {
     });
 });
 
-app.get('/api/data/students', (req, res) => {
+app.get('/api/students', (req, res) => {
   client.query(`
     SELECT
-      student.id
+      student.id,
       student.name as name,
       start_date as "startDate",
       track.id as "trackId",
@@ -50,7 +50,7 @@ app.post('/api/students/:id', (req, res) => {
   const body = req.body;
 
   client.query(`
-    INSERT INTO student (name, track_id, start_date)
+    INSERT INTO student (name, yob, school)
     VALUES($1, $2, $3)
     RETURNING id;
   `,
@@ -62,8 +62,6 @@ app.post('/api/students/:id', (req, res) => {
       SELECT
         student.id,
         student.name as name,
-        start_date as "startDate",
-        track.id as "trackId",
         track.name as track
       FROM student
       JOIN track

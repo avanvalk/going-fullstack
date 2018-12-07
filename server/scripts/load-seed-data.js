@@ -5,22 +5,25 @@ const tracks = require('./tracks');
 Promise.all(
   tracks.map(track => {
     return client.query(`
-            INSERT INTO track (name, yob)
-            VALUES ($1, $2);
+            INSERT INTO track (name)
+            VALUES ($1);
         `,
-    [track.name, track.yob]);
+    [track.name]);
   })
 )
   .then(() => {
     return Promise.all(
       students.map(student => {
         return client.query(`
-              INSERT INTO student (name, yob)
+              INSERT INTO student (name, yob, school)
               SELECT
-                $1 as name,
-                $2 as yob
+                $1 as yob,
+                id as name,
+                $2 as school
+              FROM track
+              WHERE name = $3;
             `,
-        [student.name, student.yob]);
+        [student.yob, student.school, student.track]);
       })
     );
   })

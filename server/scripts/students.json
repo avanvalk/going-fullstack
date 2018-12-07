@@ -2,35 +2,43 @@
   {
     "name": "Drew",
     "yob": 1994,
+    "track": "js",
+    "school": "Willamette",
     "male": true
   },
   {
     "name": "Ingrid",
     "yob": 1992,
+    "track": "js",
+    "school": "Willamette",
     "male": false
   },
   {
     "name": "Cleo",
     "yob": 2003,
+    "track": "js",
+    "school": "Willamette",
     "male": false
   },
   {
     "name": "Niko",
     "yob": 2005,
+    "track": "js",
+    "school": "Willamette",
     "male": true
   },
   {
     "name": "Wally",
     "yob": 1960,
+    "track": "js",
+    "school": "Willamette",
     "male": true
   },
   {
     "name": "Turid",
     "yob": 1960,
+    "track": "js",
+    "school": "Willamette",
     "male": false
-  },
-  {
-    "name": "Drew",
-    "id": "-jo-VoQ60"
   }
 ]

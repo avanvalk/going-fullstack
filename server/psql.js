@@ -5,7 +5,7 @@ const pg = require('pg');
 // Use the pg Client
 const Client = pg.Client;
 // database url
-const databaseUrl = 'postgres://drewv:drewby864@localhost:5432/school';
+const databaseUrl = 'postgres://postgres:drewby864@localhost:5432/school';
 // on windows, linux, or other systems where you need to 
 // specify username and password
 // const databaseUrl = 'postgres://<username>:<password>@localhost:5432/liveable_cities';
