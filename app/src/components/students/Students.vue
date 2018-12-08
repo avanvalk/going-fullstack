@@ -1,12 +1,10 @@
 <template>
   <section class="students">
     <h2>Students</h2>
-
-    <ul v-if="students">
-      <li v-for="student in students" :key="student.id">
-        {{student.name}}
-      </li>
-    </ul>
+    <li>
+      {{ students }},
+      {{  }}
+    </li>
   </section>
 </template>
 
@@ -22,12 +20,12 @@ export default {
   },
   created() {
     api.getStudents()
-    .then(students => {
-      this.students = students;
-    })
-    .catch(err => {
-    this.error = err;
-  });
-}
+      .then(students => {
+        this.students = students;
+      })
+      .catch(err => {
+        this.error = err;
+      });
+  }
 };
 </script>
