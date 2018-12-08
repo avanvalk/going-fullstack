@@ -5,14 +5,16 @@ const client = require('../db-client');
 client.query(`
     CREATE TABLE IF NOT EXISTS track (
         id SERIAL PRIMARY KEY,
-        name VARCHAR(256) NOT NULL
+        name VARCHAR(256) NOT NULL,
+        short_name VARCHAR(8) NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS student (
         id SERIAL PRIMARY KEY,
         name VARCHAR(256) NOT NULL,
         school VARCHAR(256) NOT NULL,
-        yob INTEGER NOT NULL REFERENCES track(id)
+        yob VARCHAR(256) NOT NULL,
+        track_id INTEGER NOT NULL REFERENCES track(id)
     );
 
 `)

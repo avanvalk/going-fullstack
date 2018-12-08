@@ -3,42 +3,36 @@
     "name": "Drew",
     "yob": 1994,
     "track": "js",
-    "school": "Willamette",
-    "male": true
+    "school": "Willamette"
   },
   {
     "name": "Ingrid",
     "yob": 1992,
     "track": "js",
-    "school": "Willamette",
-    "male": false
+    "school": "Willamette"
   },
   {
     "name": "Cleo",
     "yob": 2003,
     "track": "js",
-    "school": "Willamette",
-    "male": false
+    "school": "Willamette"
   },
   {
     "name": "Niko",
     "yob": 2005,
     "track": "js",
-    "school": "Willamette",
-    "male": true
+    "school": "Willamette"
   },
   {
     "name": "Wally",
     "yob": 1960,
     "track": "js",
-    "school": "Willamette",
-    "male": true
+    "school": "Willamette"
   },
   {
     "name": "Turid",
     "yob": 1960,
     "track": "js",
-    "school": "Willamette",
-    "male": false
+    "school": "Willamette"
   }
 ]
