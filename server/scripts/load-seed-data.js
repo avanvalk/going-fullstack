@@ -1,6 +1,6 @@
 const client = require('../db-client');
 const students = require('./students.json');
-const tracks = require('./tracks');
+const tracks = require('./tracks-data');
 
 Promise.all(
   tracks.map(track => {
@@ -8,7 +8,7 @@ Promise.all(
             INSERT INTO track (name, short_name)
             VALUES ($1, $2);
         `,
-    [track.name]);
+    [track.name, track.shortName]);
   })
 )
   .then(() => {

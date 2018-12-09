@@ -1,15 +1,13 @@
 <template>
   <section class="students">
     <h2>Students</h2>
-    <li>
-      {{ students }},
-      {{  }}
-    </li>
+    <StudentList :students="students"/>
   </section>
 </template>
 
 <script>
 import api from '../../services/api';
+import StudentList from './StudentList';
 
 export default {
   data() {
@@ -29,3 +27,6 @@ export default {
   }
 };
 </script>
+
+<style>
+</style>

@@ -23,13 +23,12 @@ app.get('/api/students', (req, res) => {
     SELECT
       student.id,
       student.name as name,
-      start_date as "startDate",
       track.id as "trackId",
       track.name as track
     From student
     JOIN track
     ON student.track_id = track.id
-    ORDER by start_date DESC, name ASC;
+    ORDER by student.name ASC;
   `)
     .then(result => {
       res.json(result.rows);
