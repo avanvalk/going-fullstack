@@ -45,15 +45,14 @@ app.get('/api/students/:id', (req, res) => {
     });
 });
 
-app.post('/api/students/:id', (req, res) => {
+app.post('/api/students', (req, res) => {
   const body = req.body;
-
   client.query(`
-    INSERT INTO student (name, yob, school)
-    VALUES($1, $2, $3)
+    INSERT INTO student (name, track_id, yob, school)
+    VALUES($1, $2, $3, $4)
     RETURNING id;
   `,
-  [body.name, body.trackId, body.startDate])
+  [body.name, body.trackId, body.school, body.yob])
     .then(result => {
       const id = result.rows[0].id;
 

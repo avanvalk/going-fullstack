@@ -2,7 +2,7 @@
   <form @submit.prevent="onSubmit(student)">
     <p>
       <label>Name:</label>
-      <input v-model="student.name" require>
+      <input type="name" v-model="student.name" require>
     </p>
     <p>
       <label>Year of Birth:</label>
@@ -27,7 +27,8 @@ function initStudent() {
   return {
     name: '',
     yob: '',
-    trackId: -1,
+    school: '',
+    trackId: 1
   };
 }
 function copyStudent(student) {
@@ -55,5 +56,7 @@ export default {
   }
 };
 </script>
+
 <style>
+
 </style>
