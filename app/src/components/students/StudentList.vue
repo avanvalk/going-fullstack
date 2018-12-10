@@ -8,6 +8,7 @@
 
 <script>
 import Student from './Student';
+
 export default {
   props: {
     students: null

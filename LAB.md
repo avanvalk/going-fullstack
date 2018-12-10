@@ -59,6 +59,7 @@ Add a detail get by id:
 * app
     * get and list display **2pts**
     * add form, post, and UI update **3pts**
+    
 * server
     * setup **2pts**
     * `GET` and `POST` routes **3pts**
