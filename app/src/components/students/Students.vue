@@ -10,6 +10,7 @@
 import api from '../../services/api';
 import AddStudent from './AddStudent';
 import StudentList from './StudentList';
+
 export default {
   data() {
     return {
@@ -38,7 +39,6 @@ export default {
         });
     }
   }
-  
 };
 </script>
 

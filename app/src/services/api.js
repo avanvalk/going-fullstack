@@ -10,18 +10,22 @@ const getOptions = (method, data) => {
 };
 
 export default {
+  
   getStudents() {
     return fetch('/api/students')
-      .then(response => response.json());
+      .then(response => response.json());      
   },
+
   getStudent(id) {
     return fetch(`/api/students/${id}`)
       .then(response => response.json());
   },
+
   addStudent(student) {
     return fetch('/api/students', getOptions('POST', student))
       .then(response => response.json());
   },
+
   updateStudent(student) {
     return fetch(
       `/api/students/${student.id}`, 
