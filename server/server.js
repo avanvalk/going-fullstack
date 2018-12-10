@@ -71,6 +71,11 @@ app.post('/api/students', (req, res) => {
     .then(result => {
       res.json(result.rows[0]);
     });
+
+  // ADD THIS TO MAKE EDIT WORK:
+  // app.put('/:id', (req, res) => {
+  // etc etc etc
+
 });
 
 const PORT = 3000;

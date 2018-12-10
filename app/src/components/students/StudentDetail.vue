@@ -9,10 +9,6 @@
         :onEdit="handleEdit"/>
       <button @click="handleRemove">🗑 Remove</button>
     </div>
-
-    <p>
-      {{student.description}}
-    </p>
   </section>
 </template>
 
