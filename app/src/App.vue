@@ -1,7 +1,6 @@
 <template>
   <div class="app">
     <header>
-      <img src="./assets/logo.png">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/students">Students</RouterLink>

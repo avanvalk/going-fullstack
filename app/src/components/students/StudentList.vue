@@ -18,12 +18,12 @@ export default {
   computed: {
     sortedStudents() {
       return this.students.slice().sort((a, b) => {
-        if(a.startDate === b.startDate) {
+        if(a.yob === b.yob) {
           if(a.name > b.name) return 1;
           if(a.name < b.name) return -1;
           return 0;
         }
-        if(a.startDate > b.startDate) return -1;
+        if(a.yob > b.yob) return -1;
         return 0;
       });
     }
